@@ -1,0 +1,11 @@
+<div class="NotFound">
+    <div class="wrapper">
+        <h1>Hmm.</h1>
+        <p>It seems that you're lost in a perpetual black hole. Let us help guide you out and get you back home.</p>
+        <div class="buttons"><a href="/">back</a><a href="/">home</a><br/><span>Help me out</span></div>
+    </div>
+    <div class="space">
+        <div class="blackhole"></div>
+        <div class="ship"></div>
+    </div>
+</div>

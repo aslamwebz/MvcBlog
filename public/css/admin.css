@@ -1,0 +1,29 @@
+.invalidFeedback{
+    color: orangered;
+}
+
+.container-20{
+    height:20vh;
+}
+.container-40{
+    height:40vh;
+}
+.container-60{
+    height:60vh;
+}
+.container-80{
+    height:80vh;
+}
+
+.container-20,.container-40,.container-60, .container-80{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-group{
+    margin-bottom: 1rem;
+}
+
+

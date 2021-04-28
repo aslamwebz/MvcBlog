@@ -1,0 +1,17 @@
+{
+    "name": "em/phpblog",
+    "authors": [
+        {
+            "name": "M Aslam",
+            "email": "aslam4webz@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "app"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.3"
+    }
+}

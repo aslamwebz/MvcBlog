@@ -1,0 +1,9 @@
+  
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteRule ^$ public/ [L]
+  RewriteRule (.*) public/$1 [L]
+  RewriteRule ^css/(.*)$ /public/css/$1 [NC,L]
+  RewriteRule ^js/(.*)$ /public/js/$1 [NC,L]
+  RewriteRule ^img/(.*)$ /public/img/$1 [NC,L]
+</IfModule>
