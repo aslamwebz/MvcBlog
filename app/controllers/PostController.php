@@ -109,8 +109,6 @@ class PostController extends Controller {
                     $data['image'] = $oldImage;
                 }
 
-
-
                 //update post
                 if($post->update($data)){
                     Application::$app->session->setFlash('success', 'Post Updated Successfully');

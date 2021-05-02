@@ -16,20 +16,20 @@ use PDOException;
  */
 class Database {
 
-    private string $dbname = 'phpblog';
-    private string $user = 'root';
-    private string $password = '';
-    private string $host = 'localhost';
+//    private string $dbname = 'mvcblog';
+//    private string $user = 'root';
+//    private string $password = '';
+//    private string $host = 'localhost';
     public PDO $pdo;
     private $statement;
     private $error;
 
 
     public function __construct() {
-        $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbname.';charset=utf8';
+        $dsn = 'mysql:host='.$_ENV['DB_HOST'].';dbname='.$_ENV['DB_DATABASE'].';charset=utf8';
 
         try {
-            $this->pdo = new PDO($dsn, $this->user, $this->password);
+            $this->pdo = new PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
             //Error mode Exception
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }catch (PDOException $e){

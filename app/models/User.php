@@ -34,7 +34,7 @@ class User extends Model{
     public function register($data){
         $password = password_hash($data['password'], PASSWORD_DEFAULT);
         $statement = $this->pdo->prepare("INSERT INTO users VALUES (?, ?, ?, ?,?,?,?,?,?)");
-        if($statement->execute(["", $data['username'],"","", $data['email'], $password,"", date("Y-m-d H:i:s"), date("Y-m-d H:i:s")])){
+        if($statement->execute(["", $data['username'],$data['firstname'],$data['lastname'], $data['email'], $password,"", date("Y-m-d H:i:s"), date("Y-m-d H:i:s")])){
             return true;
         }else {
             return false;

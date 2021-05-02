@@ -17,10 +17,22 @@ use app\models\Post;
  */
 class HomeController extends Controller{
 
+    /**
+     * default constructor, set layout
+     *
+     * @return void
+     *
+     * */
     public function __construct() {
         $this->layout = 'layouts/main';
     }
 
+    /**
+     * return index view with post data
+     *
+     * @return view
+     *
+     * */
     public function index(){
         $post = new Post();
         $posts = $post->getPosts();
@@ -28,11 +40,25 @@ class HomeController extends Controller{
         return $this->view('home', $data);
     }
 
+    /**
+     * return view post data or error
+     *
+     * @return view
+     *
+     * */
     public function post(Request $request){
         $post = new Post();
         $postData = $post->getPost($request->params['id']);
-        $data = ['post' => $postData];
-        return $this->view('post', $data);
+        if($postData != ''){
+            $data = ['post' => $postData];
+            return $this->view('post', $data);
+        }else{
+            $data = [
+                'error' => 'no data found'
+            ];
+            return $this->view('posts', $data);
+        }
+
     }
 
 }

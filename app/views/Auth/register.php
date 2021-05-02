@@ -17,47 +17,48 @@
                                             <label for="">Username</label>
                                             <input type="text" name="username" id="" class="form-control" value="<?php if(!empty($username)) { echo $username; } ?>">
                                             <span class="invalidFeedback">
-           <?php  if (!empty($errors['username'])) { echo $errors['username'];}?>
-        </span>
+                                               <?php  if (!empty($errors['username'])) { echo $errors['username'];}?>
+                                            </span>
                                         </div>
                                         <div class="form-group">
                                             <label for="">First Name</label>
                                             <input type="text" name="firstname" id="" class="form-control" value="<?php if(!empty($firstName)) { echo $firstName; } ?>">
                                             <span class="invalidFeedback">
-           <?php  if (!empty($errors['firstname'])) { echo $errors['firstname'];}?>
-        </span>
+                                               <?php  if (!empty($errors['firstname'])) { echo $errors['firstname'];}?>
+                                            </span>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Last Name</label>
                                             <input type="text" name="lastname" id="" class="form-control" value="<?php if(!empty($lastName)) { echo $lastName; } ?>">
                                             <span class="invalidFeedback">
-           <?php  if (!empty($errors['lastname'])) { echo $errors['lastname'];}?>
-        </span>
+                                               <?php  if (!empty($errors['lastname'])) { echo $errors['lastname'];}?>
+                                            </span>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Email</label>
                                             <input type="text" name="email" id="" class="form-control" value="<?php if(!empty($email)) { echo $email; } ?>">
                                             <span class="invalidFeedback">
-            <?php  if (!empty($errors['email'])) { echo $errors['email'];}?>
-        </span>
+                                                <?php  if (!empty($errors['email'])) { echo $errors['email'];}?>
+                                            </span>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Password</label>
                                             <input type="text" name="password" id="" class="form-control" >
                                             <span class="invalidFeedback">
-                <?php  if (!empty($errors['password'])) { echo $errors['password'];}?>
-        </span>
+                                                <?php  if (!empty($errors['password'])) { echo $errors['password'];}?>
+                                            </span>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Confirm Password</label>
                                             <input type="text" name="confirmpassword" id="" class="form-control">
                                             <span class="invalidFeedback">
-                    <?php  if (!empty($errors['confirmpassword'])) { echo $errors['confirmpassword'];}?>
-        </span>
+                                                <?php  if (!empty($errors['confirmpassword'])) { echo $errors['confirmpassword'];}?>
+                                            </span>
                                         </div>
                                         <div class="text-center mt-3">
                                             <!--                                        <a href="index.html" class="btn btn-lg btn-primary">Sign up</a>-->
                                             <button type="submit" class="btn btn-lg btn-primary">Sign up</button>
+                                            <a href="/" type="button" class="btn btn-lg btn-danger">Cancal</a>
                                         </div>
                                     </form>
                                 </div>

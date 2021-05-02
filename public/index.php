@@ -1,4 +1,5 @@
 <?php
+
 /**
  * phpblog index.php.
  * Initial Version by: Em
@@ -11,6 +12,10 @@ use app\controllers\PostController;
 use app\controllers\AdminController;
 
 require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/../app/helpers/functions.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
 
 $rootDir = dirname(__DIR__) .'/app';
 
@@ -19,6 +24,8 @@ $app = new Application($rootDir);
 //$app->get('/', function (){
 //    return 'hi';
 //});
+
+$asd = ['asd' => 123, 'def' => 'aaa'];
 
 $app->get('/', [HomeController::class, 'index']);
 $app->get('/post/:id', [HomeController::class, 'post']);
@@ -31,6 +38,9 @@ $app->post('/register', [AuthController::class, 'register']);
 $app->post('/index', [AuthController::class, 'index']);
 
 $app->get('/admin', [AdminController::class, 'index']);
+$app->get('/profile', [AdminController::class, 'profile']);
+
+
 $app->get('/posts', [PostController::class, 'index']);
 $app->get('/create', [PostController::class, 'create']);
 $app->post('/create', [PostController::class, 'create']);

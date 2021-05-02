@@ -19,6 +19,15 @@ class Response {
 
     public function redirect($url){
         Header("Location: $url");
+        return $this;
+
+    }
+
+    public function message($key, $value){
+        dump($value);
+        Application::$app->session->setFlash($key, $value);
+        return $this;
+
     }
 
 }

@@ -21,10 +21,23 @@ use app\db\Database;
  * @package  app\controllers;
  */
 class AuthController extends Controller {
+
+    /**
+     * main constructor class, sets default layout
+     *
+     * @return void
+     * */
     public function __construct() {
         $this->layout = 'admin/layouts/auth';
     }
 
+    /**
+     * login user or return error
+     *
+     * @params request, response
+     * @return view
+     *
+     * */
     public function login(Request $request, Response $response) {
         if ($request->isPost()) {
             $data = $request->getBody();
@@ -35,7 +48,7 @@ class AuthController extends Controller {
                 $user = new User();
                 $loggedInUser = $user->login($data);
                 if ($loggedInUser) {
-                    return $response->redirect('/');
+                    return $response->redirect('/')->message('success', 'user logged in' );
                 }
             } else {
                 $data = [
@@ -49,6 +62,12 @@ class AuthController extends Controller {
         return $this->view('auth.login');
     }
 
+    /**
+     * register user or returns error
+     *
+     * @return view
+     *
+     * */
     public function register(Request $request) {
 
         if ($request->isPost()) {
@@ -96,6 +115,12 @@ class AuthController extends Controller {
         return $this->view('auth.register');
     }
 
+    /**
+     * logout and redirect
+     *
+     * @return void
+     *
+     * */
     public function logout(Request $request, Response $response) {
         $user = new User();
         $user->logout();
