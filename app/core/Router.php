@@ -126,7 +126,7 @@ class Router {
 
         //Error 404 page
         if(!$callback){
-            return Application::$app->renderView(404);
+            return Application::$app->renderView('exceptions.404');
         }
 
         //if string view page
@@ -136,10 +136,16 @@ class Router {
 
         //if array, map controller and action
         if(is_array($callback)){
+            /** @var \app\core\Controller $controller */
             $controller = new $callback[0];
+            // used for middleware
             $controller->action = $callback[1];
             Application::$app->controller = $controller;
             $callback[0] = $controller;
+
+            foreach ($controller->getMiddleware() as $middleware){
+                $middleware->execute();
+            }
         }
 
         return call_user_func($callback, $this->request,$this->response);

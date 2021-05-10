@@ -1,3 +1,5 @@
+<?php if(!empty($username)) { echo $username; } if(!empty($firstName)) { echo $firstName; }  ?>
+
 <div class="container ">
     <main class="d-flex w-100 ">
         <div class="container d-flex flex-column">
@@ -20,14 +22,14 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="" class="form-label">First Name</label>
-                                            <input type="text" name="firstname" id="" class="form-control" value="<?php if(!empty($firstName)) { echo $firstName; } ?>">
+                                            <input type="text" name="firstname" id="" class="form-control" value="<?php if(!empty($firstname)) { echo $firstname; } ?>">
                                             <span class="invalidFeedback">
                                                <?php  if (!empty($errors['firstname'])) { echo $errors['firstname'];}?>
                                             </span>
                                         </div>
                                         <div class="form-group">
                                             <label for="" class="form-label">Last Name</label>
-                                            <input type="text" name="lastname" id="" class="form-control" value="<?php if(!empty($lastName)) { echo $lastName; } ?>">
+                                            <input type="text" name="lastname" id="" class="form-control" value="<?php if(!empty($lastname)) { echo $lastname; } ?>">
                                             <span class="invalidFeedback">
                                                <?php  if (!empty($errors['lastname'])) { echo $errors['lastname'];}?>
                                             </span>

@@ -25,9 +25,9 @@ class Application {
     public string $layout = 'layouts/main';
     private $currentUser;
 
+
     /**
-     * default application constructor, set params
-     *
+     * Application constructor.
      * @param $rootDir
      */
     public function __construct($rootDir) {
@@ -40,8 +40,24 @@ class Application {
         $this->user = new User();
         $userEmail = Application::$app->session->get('user_email');
         if($userEmail){
-            $this->currentUser = $this->user->findUser($userEmail);
+            $this->setCurrentUser($this->user->findUser($userEmail));
+        } else{
+            $this->setCurrentUser(null);
         }
+    }
+
+    /**
+     * @return object
+     */
+    public function getCurrentUser() {
+        return $this->currentUser;
+    }
+
+    /**
+     * @param User $currentUser
+     */
+    public function setCurrentUser($currentUser) {
+        $this->currentUser = $currentUser;
     }
 
     /**
@@ -114,7 +130,7 @@ class Application {
     }
 
     /**
-     * render view only redirect to view
+     * render view only, redirect to view
      *
      * @param $view
      * @param array $params
@@ -131,6 +147,13 @@ class Application {
      *
      */
     public function run(){
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        }catch (\Exception $e){
+            Application::$app->controller->layout = 'layouts/main';
+            echo $this->renderView('exceptions.403', [
+                'exception' => $e
+            ]);
+        }
     }
 }

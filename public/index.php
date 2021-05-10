@@ -26,8 +26,6 @@ $app = new Application($rootDir);
 //});
 
 
-$asd = ['asd' => 123, 'def' => 'aaa'];
-
 $app->get('/', [HomeController::class, 'index']);
 $app->get('/post/:id', [HomeController::class, 'post']);
 $app->get('/posts', [PostController::class, 'index']);

@@ -9,16 +9,19 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AdminMiddleware;
+use app\models\User;
 
 class AdminController extends Controller {
 
     /**
-     * Main Constructor class, set default layout
+     * Main Constructor, set default layout
      *
      * @returns void
      */
     public function __construct() {
         $this->layout = 'admin/layouts/main';
+        $this->registerMiddleware(new AdminMiddleware([]));
     }
 
     /**
@@ -36,7 +39,7 @@ class AdminController extends Controller {
      * @return string|string[]
      * */
     public function profile(){
-        $user = Application::$app->user->findUserById($_SESSION['user_id']);
+        $user = (new User)->findUserById($_SESSION['user_id']);
         $data = ['user' => $user];
         return $this->view('admin.profile', $data);
     }

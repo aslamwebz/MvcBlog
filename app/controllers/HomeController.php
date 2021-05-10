@@ -18,7 +18,7 @@ use app\models\Post;
 class HomeController extends Controller{
 
     /**
-     * default constructor, set layout
+     * Main constructor, set layout
      *
      * @return void
      *

@@ -8,6 +8,8 @@
 namespace app\core;
 
 
+use app\core\middlewares\BaseMiddleware;
+
 /**
  * Class Controller
  *
@@ -17,6 +19,18 @@ namespace app\core;
 class Controller {
     public string $layout = 'main';
     public string $action = '';
+
+    /**
+     * @var BaseMiddleware[]
+     */
+    protected array $middleware = [];
+
+    /**
+     * @return middlewares\BaseMiddleware[]
+     */
+    public function getMiddleware(): array {
+        return $this->middleware;
+    }
 
     /**
      * render view only redirect to view
@@ -33,9 +47,18 @@ class Controller {
      * set layout
      *
      * @param $layout
-     * @return false|string
+     * @return void
      */
     public function setLayout($layout){
         $this->layout = $layout;
+    }
+
+    /**
+     * @param BaseMiddleware $middleware
+     *
+     * @return void
+     */
+    public function registerMiddleware(BaseMiddleware $middleware){
+        $this->middleware[] = $middleware;
     }
 }

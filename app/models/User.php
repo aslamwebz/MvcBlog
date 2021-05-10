@@ -97,9 +97,9 @@ class User extends Model{
 //        unset($_SESSION['user_id']);
 //        unset($_SESSION['user_name']);
 //        unset($_SESSION['user_email']);
+        Application::$app->setCurrentUser(null);
         Application::$app->session->remove('user_id');
         Application::$app->session->remove('user_name');
         Application::$app->session->remove('user_email');
-
     }
 }

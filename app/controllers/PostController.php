@@ -9,6 +9,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AdminMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\core\Validation;
@@ -23,13 +24,14 @@ use app\Models\Post;
 class PostController extends Controller {
 
     /**
-     * default constructor, set layout
+     * Main constructor, set layout
      *
      * @return void
      *
      * */
     public function __construct() {
         $this->layout = 'admin/layouts/main';
+        $this->registerMiddleware(new AdminMiddleware([]));
     }
 
     /**
