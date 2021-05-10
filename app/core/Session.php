@@ -18,6 +18,12 @@ namespace app\core;
 class Session {
     protected const FLASH_KEY = 'flash_messages';
 
+    /**
+     * default constructor,session start
+     *
+     * @return void
+     *
+     * */
     public function __construct() {
         session_start();
         $flashMessages = $_SESSION[self::FLASH_KEY] ?? [];
@@ -27,35 +33,83 @@ class Session {
         $_SESSION[self::FLASH_KEY] = $flashMessages;
     }
 
+    /**
+     * set session val
+     *
+     * @param $key
+     * @param $value
+     * @return void
+     *
+     */
     public function set($key,$value){
         $_SESSION[$key] = $value;
     }
 
+    /**
+     * get session val
+     *
+     * @param $key
+     * @return string|bool
+     *
+     */
     public function get($key){
         return $_SESSION[$key] ?? false;
     }
 
+    /**
+     * remove session val
+     *
+     * @param $key
+     * @return void
+     *
+     */
     public function remove($key){
         unset($_SESSION[$key]);
     }
 
+    /**
+     * set session flash message
+     *
+     * @param $key
+     * @param $message
+     * @return void
+     */
     public function setFlash($key,$message){
         $_SESSION[self::FLASH_KEY][$key] = [
             'remove' => false,
             'value' => $message
         ];
-
     }
 
+
+    /**
+     * get flash message
+     *
+     * @param $key
+     * @return string|bool
+     *
+     */
     public function getFlash($key){
         return $_SESSION[self::FLASH_KEY][$key]['value'] ?? false;
     }
 
+    /**
+     * remove all flash messages
+     *
+     * @return void
+     *
+     */
     public function __destruct()
     {
         $this->removeFlashMessages();
     }
 
+    /**
+     * flash message remove method
+     *
+     * @return void
+     *
+     */
     public function removeFlashMessages()
     {
         $flashMessages = $_SESSION[self::FLASH_KEY] ?? [];

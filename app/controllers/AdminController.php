@@ -24,7 +24,7 @@ class AdminController extends Controller {
     /**
      * index function return view admin
      *
-     * @return view
+     * @return string|string[]
      * */
     public function index(){
         return $this->view('admin.admin');
@@ -33,7 +33,7 @@ class AdminController extends Controller {
     /**
      * profile function, return view admin with user data
      *
-     * @return view
+     * @return string|string[]
      * */
     public function profile(){
         $user = Application::$app->user->findUserById($_SESSION['user_id']);

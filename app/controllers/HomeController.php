@@ -30,7 +30,7 @@ class HomeController extends Controller{
     /**
      * return index view with post data
      *
-     * @return view
+     * @return string|string[]
      *
      * */
     public function index(){
@@ -43,9 +43,10 @@ class HomeController extends Controller{
     /**
      * return view post data or error
      *
-     * @return view
+     * @param Request $request
+     * @return string|string[]
      *
-     * */
+     */
     public function post(Request $request){
         $post = new Post();
         $postData = $post->getPost($request->params['id']);

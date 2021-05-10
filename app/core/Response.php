@@ -17,17 +17,27 @@ use http\Header;
  */
 class Response {
 
+    /**
+     * redirect URL
+     *
+     * @param $url
+     * @return Response
+     */
     public function redirect($url){
         Header("Location: $url");
         return $this;
-
     }
 
+    /**
+     * set flash message
+     *
+     * @param $key
+     * @param $value
+     * @return Response
+     */
     public function message($key, $value){
-        dump($value);
         Application::$app->session->setFlash($key, $value);
         return $this;
-
     }
 
 }

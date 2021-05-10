@@ -1,3 +1,9 @@
+<?php
+use app\core\Application;
+
+include_once Application::$ROOT_DIR . '/views/partials/flashMessages.php'
+;?>
+
 <div class="container">
     <div class=" d-flex align-items-center justify-content-center p-6 m-2" style="height: 80vh;">
         <main class="d-flex w-100 ">
@@ -25,7 +31,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Password</label>
-                                                <input type="text" name="password" id="" class="form-control  form-control-lg">
+                                                <input type="password" name="password" id="" class="form-control  form-control-lg">
                                                 <span class="invalidFeedback">
                 <?php if (!empty($errors['password'])) { echo $errors['password'];}?>
             </span>

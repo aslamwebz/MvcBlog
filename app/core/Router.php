@@ -21,20 +21,41 @@ class Router {
     public Request $request;
     public Response $response;
 
-    public function __construct($request) {
+    /**
+     * default constructor
+     *
+     */
+    public function __construct() {
         $this->request = new Request();
         $this->response = new Response();
     }
 
+    /**
+     * add url params to routes
+     *
+     * @param $url
+     * @param $callback
+     */
     public function get($url, $callback){
         $this->routes['get'][$url] = $callback;
     }
 
+    /**
+     * add url params to routes
+     *
+     * @param $url
+     * @param $callback
+     */
     public function post($url, $callback){
         $this->routes['post'][$url] = $callback;
     }
 
-    //Function to detect custom routing parameters in routes eg: :id pr {id}
+    /**
+     * get regex pattern if matched :id {id}
+     *
+     * @param $pattern
+     * @return bool|string
+     */
     function getRegex($pattern){
         if (preg_match('/[^-:\/_{}()a-zA-Z\d]/', $pattern))
             return false; // Invalid pattern
@@ -64,6 +85,11 @@ class Router {
     }
 
 
+    /**
+     * Router resolve function, resolves url to view or controller with request and response
+     *
+     * @return mixed|string|string[]
+     */
     public function resolve(){
         $url = $this->request->getUrl();
         $method = $this->request->getMethod();

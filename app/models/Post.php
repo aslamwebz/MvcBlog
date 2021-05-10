@@ -17,11 +17,18 @@ use app\core\Model;
  */
 class Post extends Model {
 
+    /**
+     * store post
+     *
+     * @param $data
+     * @return bool
+     *
+     */
     public function store($data){
-        var_dump($data);
-        $sql = "INSERT INTO posts VALUES (?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO posts VALUES (?,?,?,?,?,?,?,?)";
+        $user_id = $_SESSION['user_id'];
         $statement = $this->pdo->prepare($sql);
-        if($statement->execute(['','1', $data['title'], $data['body'], $data['image'], '', ''])){
+        if($statement->execute(['',$user_id, $data['title'], $data['body'], $data['image'],"","", date("Y-m-d H:i:s")])){
             return true;
         }else{
             return false;
@@ -29,8 +36,14 @@ class Post extends Model {
 
     }
 
+    /**
+     * update post
+     *
+     * @param $data
+     * @return bool
+     *
+     */
     public function update($data){
-        var_dump($data);
        $statement = $this->pdo->prepare("UPDATE posts SET title=?, body =?, image=? where id=?");
        if($statement->execute([$data['title'], $data['body'], $data['image'], $data['id']])){
            return true;
@@ -40,6 +53,12 @@ class Post extends Model {
 
     }
 
+    /**
+     * get single post
+     *
+     * @param $id
+     * @return object|array|bool
+     */
     public function getPost($id){
             $sql = "SELECT * FROM posts where id=?";
             $statement = $this->pdo->prepare($sql);
@@ -50,6 +69,11 @@ class Post extends Model {
             }
     }
 
+    /**
+     * get all posts
+     *
+     * @return object|array|bool
+     */
     public function getPosts(){
         $statement = $this->pdo->prepare("SELECT * FROM posts");
         if($statement->execute()){
@@ -59,6 +83,27 @@ class Post extends Model {
         }
     }
 
+    /**
+     * get user posts
+     *
+     * @return object|array|bool
+     */
+    public function getUserPosts(){
+        $user_id = $_SESSION['user_id'];
+        $statement = $this->pdo->prepare("SELECT * FROM posts where user_id = ?");
+        if($statement->execute([$user_id])){
+            return $statement->fetchAll();
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * delete post
+     *
+     * @param $id
+     * @return bool
+     */
     public function destroy($id) {
         $statement = $this->pdo->prepare("DELETE FROM posts WHERE id=?");
         if($statement->execute([$id])){

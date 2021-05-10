@@ -16,11 +16,23 @@ namespace app\core;
  * @package  app\core;
  */
 class Request {
+
     public array $params = [];
+
+    /**
+     * get method type
+     *
+     * @return false|string
+     */
     public function getMethod(){
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
+    /**
+     * get URL
+     *
+     * @return string
+     */
     public function getUrl(){
         $path = $_SERVER['REQUEST_URI'];
         $position = strpos($path, '?');
@@ -30,15 +42,30 @@ class Request {
         return $path;
     }
 
+    /**
+     * return true if POST
+     *
+     * @return bool
+     */
     public function isGet(){
         return $this->getMethod() === 'get';
     }
 
+    /**
+     * return true if POSTt
+     *
+     * @return bool
+     */
     public function isPost(){
         return $this->getMethod() === 'post';
     }
 
 
+    /**
+     * return body after sanitize
+     *
+     * @return array
+     */
     public function getBody(){
         $data = [];
         if($this->isGet()){

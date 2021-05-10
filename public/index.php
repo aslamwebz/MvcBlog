@@ -25,10 +25,13 @@ $app = new Application($rootDir);
 //    return 'hi';
 //});
 
+
 $asd = ['asd' => 123, 'def' => 'aaa'];
 
 $app->get('/', [HomeController::class, 'index']);
 $app->get('/post/:id', [HomeController::class, 'post']);
+$app->get('/posts', [PostController::class, 'index']);
+
 
 $app->get('/login', [AuthController::class, 'login']);
 $app->get('/logout', [AuthController::class, 'logout']);
@@ -41,7 +44,6 @@ $app->get('/admin', [AdminController::class, 'index']);
 $app->get('/profile', [AdminController::class, 'profile']);
 
 
-$app->get('/posts', [PostController::class, 'index']);
 $app->get('/create', [PostController::class, 'create']);
 $app->post('/create', [PostController::class, 'create']);
 $app->get('/edit/:id', [PostController::class, 'edit']);

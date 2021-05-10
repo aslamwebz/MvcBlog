@@ -12,5 +12,7 @@ function dump($value){
     echo '</pre>';
 }
 
-
+function redirect($path){
+    header("Location: $path");
+}
 ?>

@@ -8,11 +8,12 @@
 namespace app\core;
 
 /**
- * Class Validation
+ * Validation class
  *
  * @author M Aslam <aslam4webz@gmail.com>
  * @package  app\core;
  */
+
 class Validation
 {
 

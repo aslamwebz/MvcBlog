@@ -1,7 +1,7 @@
 <nav id="sidebar" class="sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="/admin">
-            <span class="align-middle">PHPBLOG</span>
+        <a class="sidebar-brand" href="/">
+            <span class="align-middle">Home</span>
         </a>
 
         <ul class="sidebar-nav">

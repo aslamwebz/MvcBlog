@@ -34,10 +34,10 @@ class AuthController extends Controller {
     /**
      * login user or return error
      *
-     * @params request, response
-     * @return view
-     *
-     * */
+     * @param Request $request
+     * @param Response $response
+     * @return Response|string|string[]
+     */
     public function login(Request $request, Response $response) {
         if ($request->isPost()) {
             $data = $request->getBody();
@@ -46,9 +46,10 @@ class AuthController extends Controller {
             $validator->name('password')->value($data['password'])->customPattern('[A-Za-z0-9-.;_!#@]{5,15}')->required();
             if ($validator->isSuccess()) {
                 $user = new User();
-                $loggedInUser = $user->login($data);
-                if ($loggedInUser) {
+                if ($user->login($data)) {
                     return $response->redirect('/')->message('success', 'user logged in' );
+                }else{
+                    return $response->redirect('/login')->message('error', 'username or password error' );
                 }
             } else {
                 $data = [
@@ -65,9 +66,10 @@ class AuthController extends Controller {
     /**
      * register user or returns error
      *
-     * @return view
+     * @param Request $request
+     * @return string|string[]
      *
-     * */
+     */
     public function register(Request $request) {
 
         if ($request->isPost()) {
@@ -120,10 +122,10 @@ class AuthController extends Controller {
      *
      * @return void
      *
-     * */
-    public function logout(Request $request, Response $response) {
+     */
+    public function logout() {
         $user = new User();
         $user->logout();
-        $response->redirect('/');
+        return redirect('/');
     }
 }

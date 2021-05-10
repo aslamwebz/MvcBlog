@@ -21,10 +21,16 @@
                    <td><?php echo $post['title'] ?></td>
                    <td><?php echo $post['category'] ?></td>
                    <td><?php echo $post['tags'] ?></td>
-                   <td><a href="/edit/<?php echo $post['id']; ?>" class="btn btn-info float-start me-1">Edit</a>
-                       <form action="/delete/<?php echo $post['id']; ?>">
-                           <button class="btn btn-danger float-start">Delete</button>
-                       </form></td>
+                   <td>
+                       <div class="btn-group" >
+                           <a href="/edit/<?php echo $post['id']; ?>" class="btn btn-info float-start me-1">Edit</a>
+                           <form action="/delete/<?php echo $post['id']; ?>">
+                               <button class="btn btn-danger float-end">Delete</button>
+                           </form></td>
+                       </div>
+
+
+
                </tr>
            <?php endforeach; ?>
            </tbody>

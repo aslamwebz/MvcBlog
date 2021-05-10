@@ -22,16 +22,36 @@ use app\Models\Post;
  */
 class PostController extends Controller {
 
+    /**
+     * default constructor, set layout
+     *
+     * @return void
+     *
+     * */
     public function __construct() {
         $this->layout = 'admin/layouts/main';
     }
 
+    /**
+     * return index view with user post data
+     *
+     * @return string|string[]
+     *
+     * */
     public function index(){
         $post = new Post();
-        $data = $post->getPosts();
+        $data = $post->getUserPosts();
         return $this->view('admin.posts', ['data' => $data]);
     }
 
+    /**
+     * create post
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return string|string[]
+     *
+     */
     public function create(Request $request, Response $response){
         if($request->isPost()){
             $validator = new Validation();
@@ -79,6 +99,14 @@ class PostController extends Controller {
         return $this->view('admin.create');
     }
 
+    /**
+     * edit post
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return string|string[]
+     *
+     */
     public function edit(Request $request, Response $response){
         $post = new Post();
 
@@ -143,6 +171,14 @@ class PostController extends Controller {
     }
 
 
+    /**
+     * delete post
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return string|string[]
+     *
+     */
     public function delete(Request $request, Response $response){
         $post = new Post();
         if($post->destroy($request->params['id'])){

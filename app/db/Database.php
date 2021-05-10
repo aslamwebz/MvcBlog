@@ -21,10 +21,14 @@ class Database {
 //    private string $password = '';
 //    private string $host = 'localhost';
     public PDO $pdo;
-    private $statement;
-    private $error;
+    private string $error;
 
-
+    /**
+     * default constructor, database init
+     *
+     * @return void
+     *
+     * */
     public function __construct() {
         $dsn = 'mysql:host='.$_ENV['DB_HOST'].';dbname='.$_ENV['DB_DATABASE'].';charset=utf8';
 

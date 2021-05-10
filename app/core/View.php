@@ -17,6 +17,13 @@ namespace app\core;
  */
 class View {
 
+    /**
+     * render view
+     *
+     * @param $view
+     * @param array $params
+     * @return string|bool
+     */
     public function renderView($view, array $params = []){
         $viewContent = $this->renderViewOnly($view, $params);
         $layout = Application::$app->layout;
@@ -29,6 +36,13 @@ class View {
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
+    /**
+     * render view only
+     *
+     * @param $view
+     * @param array $params
+     * @return string|bool
+     */
     public function renderViewOnly($view,array $params = []){
         foreach ($params as $key => $value){
             $$key = $value;
